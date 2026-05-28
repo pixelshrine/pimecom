@@ -1,6 +1,6 @@
 # PIM Ecom Messaging
 
-A small portfolio project for a backend .NET developer role. The system separates product management from the public e-commerce catalog and uses asynchronous product events to keep the Ecom read model in sync.
+A small portfolio project written in .NET and React. The system separates product management from the public e-commerce catalog and uses asynchronous product events to keep the Ecom data in sync with PIM.
 
 ## Architecture
 
@@ -90,6 +90,48 @@ Content-Type: application/json
   "imageUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80"
 }
 ```
+
+## Prerequisites
+
+Before running the project, install the following:
+
+Docker Desktop
+Git
+.NET SDK (if running outside containers)
+
+## Getting Started
+
+Clone Repository
+git clone <repository-url>
+cd PIMECOM
+
+## Running the Application
+
+Build and start all services:
+
+docker compose up --build
+
+Run in detached mode:
+
+docker compose up -d
+
+Stop containers:
+
+docker compose down
+
+Remove containers and volumes:
+
+docker compose down -v
+
+## Future Improvement
+
+Authentication & Authorization
+Media Asset Management
+Search Optimization
+CI/CD Pipeline
+Kubernetes Deployment
+DAM Integration
+Multi-tenant Support
 
 ## Study Map
 
