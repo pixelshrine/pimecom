@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Ecom/Ecom.csproj" />
+  <Project Path="MessageQueue/MessageQueue.csproj" />
+  <Project Path="Pim/Pim.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+</Solution>

@@ -1,0 +1,63 @@
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: pim-ecom-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "P@ssword12345"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - pim-ecom-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: pim-ecom-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - pim-ecom-network
+
+  pim-api:
+    build:
+      context: .
+      dockerfile: ./Pim/Dockerfile
+    container_name: pim-api
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Server=sqlserver;Database=PimDb;User Id=sa;Password=P@ssword12345;TrustServerCertificate=True"
+      Messaging__RabbitMqHost: "rabbitmq"
+    ports:
+      - "5001:8080"
+    networks:
+      - pim-ecom-network
+
+  ecom-api:
+    build:
+      context: .
+      dockerfile: ./Ecom/Dockerfile
+    container_name: ecom-api
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Server=sqlserver;Database=EcomDb;User Id=sa;Password=P@ssword12345;TrustServerCertificate=True"
+      Messaging__RabbitMqHost: "rabbitmq"
+    ports:
+      - "5002:8080"
+    networks:
+      - pim-ecom-network
+
+volumes:
+  sqlserver-data:
+
+networks:
+  pim-ecom-network:

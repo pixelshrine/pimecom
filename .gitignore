@@ -1,0 +1,43 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build folders
+bin/
+obj/
+
+# Rider
+.idea/
+
+# VSCode
+.vscode/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-data/
+*.pid
+
+# React env
+.env
+.env.local
+
+# ASP.NET secrets
+appsettings.Development.json
+
+# Coverage
+coverage/
+
+# Packages
+*.nupkg
